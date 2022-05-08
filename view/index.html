@@ -1,17 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8">
+    <title>The Chuck</title>
 </head>
 <body>
-    <h1>First</h1>
-    <h2>Subject<h2>
-    <br>
-    <a href="http://localhost:3000/subject">Image of VR</a>
-    <br>
-    <a href="http://localhost:3000/acteur">Image of Chuck</a>
+    <h1>The Chuck</h1>
+    <ul class="menu">
+        <li>
+            <h2>Menu<h2></h2>
+        <label>
+            <p>EDIT</p>
+        </label>
+        <li>
+            <form id="editForm" onsubmit="sendEdit()" method="post">
+                <input type="text" name="filmname" placeholder="Enter a chuck film name">
+                <input type="text" name="director" placeholder="Enter a chuck director name">
+                <input type="text" name="date" placeholder="Enter a chuck date film name">
+                <input type="text" name="countryprod" placeholder="Enter a chuck country prod ">
+                <button type="submit" name="edit" class="btn-link">Go</button>
+            </form>
+        </li>
+        <label>
+            <p>UPDATE</p>
+        </label>
+        <li>
+            <form id="updateForm" onsubmit="sendUpdate()" method="post">
+                <input type="text" name="filmnameup" placeholder="Enter a chuck film name">
+                <input type="text" name="directorup"placeholder="Enter a chuck director name">
+                <button type="submit" name="update" class="btn-link">Go</button>
+            </form>
+        </li>
+        <label>
+            <p>DELETE</p>
+        </label>
+        <li>
+            <form id="deleteForm" onsubmit="sendDelete()" method="post">
+                <input type="text" name="filmnamedel" placeholder="Enter a chuck film name">
+                <button type="submit" name="delete" class="btn-link">Go</button>
+            </form>
+        </li>
+    </ul>
+    <footer>
+        <p>In the honor of Chuck</p>
+    </footer>
+
 </body>
+
+<script>
+    function sendEdit(){
+        let url = "http://localhost:3000/edit/?filmname=" + document.getElementsByName("filmname")[0].value + "&director=" + document.getElementsByName("director")[0].value+"&date=" + document.getElementsByName("date")[0].value+"&countryprod=" + document.getElementsByName("countryprod")[0].value
+        let form = document.getElementById("editForm")
+        form.action = url
+    }
+    function sendUpdate(){
+        let url = "http://localhost:3000/update/?filmname=" + document.getElementsByName("filmnameup")[0].value + "&director=" + document.getElementsByName("directorup")[0].value
+        let form = document.getElementById("updateForm")
+        console.log(url)
+        form.action = url
+    }
+    function sendDelete(){
+        let url = "http://localhost:3000/delete/?filmname=" + document.getElementsByName("filmnamedel")[0].value 
+        let form = document.getElementById("deleteForm")
+        console.log(url)
+        form.action = url
+    }
+</script>
+
+
+<style>
+    body{
+        background-image: url("https://pbs.twimg.com/profile_images/1407346896/89.jpg");
+        background-position:center center;
+        background-repeat: no-repeat;
+        background-size: 95em;
+        background-position:40% 12%;
+    }
+    a{
+        color: rgb(255, 35, 6);
+        font-size: 2em;
+        display:block;
+        min-width: 120px;
+        margin: 0.5rem;
+        padding: 0.4rem 0;
+        text-align: center;
+        background-color: rgb(148,17,12);
+        color: blanchedalmond;
+        text-decoration: none;
+        border: 1px solid blanchedalmond;
+        border-radius: 4px;
+        transition: all 1s ;  
+    }
+    h1{
+        text-align: center;
+        font-size: 70pt;
+        color: rgb(19, 26, 237);
+    }
+    h2{
+        font-style: italic;
+        font-size: 40pt;
+        color: rgb(237, 237, 19);
+    }
+    p{
+        color: blanchedalmond;
+        text-align: center;
+    }
+    .menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 40px;
+        height: 650px;
+        width: 30%;
+        background-color: #5c5d5e;
+    }
+    .menu li {
+        list-style-type: none ;       /* Suppression des puces */
+    
+    }
+    .menu a {
+        display:block;                /* Transformation en block */
+        min-width: 120px;             /* Largeur minimale des liens */   
+        
+        margin: 0.5rem;               /* Marges externes */
+        padding: 0.4rem 0;            /* Marges internes */
+        text-align: center;           /* Centrage du texte */   
+        background-color: rgb(148,17,12);    /* Arrière-plan */
+        color: blanchedalmond;                  /* Couleur du texte */
+        text-decoration: none;        /* Suppression du soulignement */
+        border: 1px solid blanchedalmond;       /* Ajout d'une bordure */
+        border-radius: 4px;           /* Arrondis des bordures */
+        
+        transition: all 1s ;          /* Ajout des effets de transition */
+    }
+    .menu a.actif {    
+        background-color: #000 ; 
+        color: #1ABC9C ;
+        border-color: #1ABC9C ;
+    }
+    .menu a:hover,
+    .menu a:hover.actif{
+        background-color: blanchedalmond;
+        color: rgb(148, 17, 12);
+        border-color: rgb(148, 17,12);
+    }
+    footer{
+        display: flex;
+        justify-content: center;
+        padding: 5px;
+        background-color: #341e1e;
+        color: rgb(126, 3, 3);
+    }
+
+    
+</style>
 </html>
